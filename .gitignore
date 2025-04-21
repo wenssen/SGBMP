@@ -1,0 +1,53 @@
+# === PYTHON ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.egg
+*.egg-info/
+dist/
+build/
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+env/
+venv/
+ENV/
+.venv/
+.idea/
+.pytest_cache/
+.mypy_cache/
+
+# === PHP ===
+vendor/
+composer.lock
+.env
+*.log
+
+# === NODE / JS (por si usas algo como npm, vite, etc) ===
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# === GENERAL WEB ===
+.DS_Store
+Thumbs.db
+
+# === IDEs y Editores ===
+.vscode/
+*.sublime-workspace
+*.sublime-project
+*.swp
+*.bak
+
+# === SISTEMA ===
+*.tmp
+*.log
+
+# === APACHE / NGINX LOGS (si subes logs locales por error) ===
+access.log
+error.log
