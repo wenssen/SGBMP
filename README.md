@@ -60,4 +60,4 @@ Crea una nueva rama para tus cambios.
 Haz un Pull Request con una descripción detallada de lo que cambiaste.
 
 Licencia
-Este proyecto está licenciado bajo la Licencia MIT. Puedes ver los detalles completos en el archivo LICENSE.
+Este proyecto está licenciado bajo la Licencia MIT. Puedes ver los detalles completos en el archivo [LICENSE](https://github.com/wenssen/SGBMP/blob/main/LICENSE).
