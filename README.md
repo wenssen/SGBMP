@@ -1,5 +1,6 @@
 SGBMP - Sistema de Gestión de Bienes y Mantenimiento Preventivo
 Descripción
+
 El SGBMP es una plataforma diseñada para gestionar bienes y realizar mantenimiento preventivo en una organización. Facilita la administración de activos, la programación de mantenimiento, la generación de reportes, y la optimización de recursos para prolongar la vida útil de los bienes.
 
 Funcionalidades
