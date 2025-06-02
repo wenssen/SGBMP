@@ -24,15 +24,16 @@ El **SGBMP** es una plataforma web desarrollada para facilitar la administració
    ```bash
    git clone https://github.com/wenssen/SGBMP.git
    cd SGBMP
+   ```
 Instala las dependencias:
 
-bash
+```bash
 Copiar
 Editar
 composer install
 npm install && npm run dev
 Configura el entorno:
-
+```
 bash
 Copiar
 Editar
@@ -68,7 +69,7 @@ Este proyecto está licenciado bajo la Licencia MIT.
 
 📬 Contacto
 Desarrollado por Edgar Santana
-Correo: [tu-correo@ejemplo.com]
+Correo: [edgar.santana@alumnos.uaysen.cl]
 
 yaml
 Copiar
