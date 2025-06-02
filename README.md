@@ -25,19 +25,19 @@ El **SGBMP** es una plataforma web desarrollada para facilitar la administració
    git clone https://github.com/wenssen/SGBMP.git
    cd SGBMP
    ```
-Instala las dependencias:
+2. Instala las dependencias:
 
 ```
 composer install
 npm install && npm run dev
 ```
-Configura el entorno:
+3. Configura el entorno:
 
 ```
 cp .env.example .env
 php artisan key:generate
 ```
-Ajusta .env con tus credenciales y ejecuta:
+4. Ajusta .env con tus credenciales y ejecuta:
 
 ```
 php artisan migrate
