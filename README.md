@@ -21,28 +21,28 @@ El **SGBMP** es una plataforma web desarrollada para facilitar la administració
 ## ⚙️ Instalación
 
 1. Clona el repositorio:
-   ```
-   git clone https://github.com/wenssen/SGBMP.git
-   cd SGBMP
-   ```
-2. Instala las dependencias:
+    ```
+    git clone https://github.com/wenssen/SGBMP.git
+    cd SGBMP
+    ```
+3. Instala las dependencias:
 
-```
-composer install
-npm install && npm run dev
-```
-3. Configura el entorno:
+    ```
+    composer install
+    npm install && npm run dev
+    ```
+4. Configura el entorno:
 
-```
-cp .env.example .env
-php artisan key:generate
-```
+    ```
+    cp .env.example .env
+    php artisan key:generate
+    ```
 4. Ajusta .env con tus credenciales y ejecuta:
 
-```
-php artisan migrate
-php artisan serve
-```
+    ```
+    php artisan migrate
+    php artisan serve
+    ```
 🧰 Tecnologías Utilizadas
 Framework Backend: Laravel (PHP)
 
