@@ -66,6 +66,10 @@
         <button type="submit" class="btn btn-primary">Guardar</button>
         <a href="{{ route('bienes.index') }}" class="btn btn-secondary">Cancelar</a>
     </form>
+    
+    <label>¿Requiere mantenimiento?</label><br>
+    <input type="radio" name="requiere_mantenimiento" value="1"> Sí<br>
+    <input type="radio" name="requiere_mantenimiento" value="0" checked> No<br>
 
     {{-- SCRIPT PARA MOSTRAR INPUTS --}}
     <script>

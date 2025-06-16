@@ -32,7 +32,7 @@ public function store(Request $request)
         'descripcion' => 'nullable|string',
     ]);
 
-    // Determinar qué valores usar
+    // Determinar quÃ© valores usar
     $nombre = $request->input('nuevo_nombre') ?: $request->input('nombre');
     $categoria = $request->input('nueva_categoria') ?: $request->input('categoria');
     $ubicacion = $request->input('nueva_ubicacion') ?: $request->input('ubicacion');
@@ -44,9 +44,10 @@ public function store(Request $request)
         'cantidad' => $request->input('cantidad'),
         'fecha_adquisicion' => $request->input('fecha_adquisicion'),
         'descripcion' => $request->input('descripcion'),
+        'requiere_mantenimiento' => $request->input('requiere_mantenimiento', false),
     ]);
 
-    return redirect()->route('bienes.index')->with('success', 'Bien registrado con éxito.');
+    return redirect()->route('bienes.index')->with('success', 'Bien registrado con Ã©xito.');
 }
 
     public function edit(Bien $bien)
@@ -57,7 +58,7 @@ public function store(Request $request)
     public function update(Request $request, Bien $bien)
     {
         $bien->update($request->all());
-        return redirect()->route('bienes.index')->with('success', 'Bien actualizado con éxito.');
+        return redirect()->route('bienes.index')->with('success', 'Bien actualizado con Ã©xito.');
     }
 
     public function destroy($id)
@@ -73,11 +74,6 @@ public function store(Request $request)
         return redirect()->route('bienes.index')->with('success', 'Bien eliminado correctamente.');
     }
 
-    public function configuracion()
-    {
-        return view('bienes.configuracion');
-    }
-    
     public function show(Bien $bien)
     {
         return view('bienes.show', compact('bien'));
