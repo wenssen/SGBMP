@@ -12,11 +12,18 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
     <div class="container-fluid">
         <a class="navbar-brand" href="/"><i class="fa fa-home" aria-hidden="true"></i></a>
+<<<<<<< HEAD
         <a class="navbar-brand" href="/"><i class="fa fa-mail" aria-hidden="true"></i></a
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a href="/bienes" class="nav-link"><i class="fa fa-archive" aria-hidden="true"></i> Bienes</a></li>
                 <li class="nav-item"><a href="#" class="nav-link disabled"><i class="fa fa-wrench" aria-hidden="true"></i> Mantenimientos</a></li>
+=======
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a href="/" class="nav-link"><i class="fa fa-bell" aria-hidden="true"></i> Notificaciones</a></li>
+                <li class="nav-item"><a href="/" class="nav-link"><i class="fa fa-cog" aria-hidden="true"></i> Configuración</a></li>
+>>>>>>> 2108499 (Actualizar mantenimientos y notificaciones)
             </ul>
         </div>
     </div>

@@ -8,12 +8,6 @@
     @endif
 
     <a href="{{ route('bienes.create') }}" class="btn btn-success mb-3">Agregar Bien</a>
-    <a href="{{ route('bienes.configuracion') }}" class="btn btn-outline-secondary mb-3">
-        Configurar nombres, categorías y ubicaciones
-    </a>
-
-    {{-- 🔴 Se eliminó esta línea que estaba fuera del bucle y causaba error --}}
-    {{-- <a href="{{ route('bienes.show', $bien->id) }}" class="btn btn-info btn-sm">Ver</a> --}}
 
     <table class="table table-bordered">
         <thead>
@@ -33,13 +27,12 @@
                     <td>{{ $bien->ubicacion }}</td>
                     <td>{{ $bien->fecha_adquisicion }}</td>
                     <td>
-                        {{-- ✅ Aquí sí funciona el botón "Ver" porque $bien está definido --}}
-                        <a href="{{ route('bienes.show', $bien->id) }}" class="btn btn-info btn-sm">Ver</a>
-                        <a href="{{ route('bienes.edit', $bien->id) }}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{{ route('bienes.show', $bien->id) }}" class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> Ver</a>
+                        <a href="{{ route('bienes.edit', $bien->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
                         <form action="{{ route('bienes.destroy', $bien->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-danger btn-sm" onclick="return confirm('¿Eliminar este bien?')">Eliminar</button>
+			<button class="btn btn-danger btn-sm" onclick="return confirm('�Eliminar este bien?')"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</button>
                         </form>
                     </td>
                 </tr>
@@ -48,6 +41,8 @@
                     <td colspan="5">No hay bienes registrados aún.</td>
                 </tr>
             @endforelse
+
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         </tbody>
     </table>
 @endsection
