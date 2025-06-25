@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.layout')
 
 @section('content')
     <h2 class="mb-4">Listado de Bienes</h2>
@@ -13,7 +13,7 @@
         <thead>
             <tr>
                 <th>Nombre</th>
-                <th>Categoría</th>
+                <th>Categoría­</th>
                 <th>Ubicación</th>
                 <th>Adquisición</th>
                 <th>Acciones</th>
@@ -32,7 +32,7 @@
                         <form action="{{ route('bienes.destroy', $bien->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
-			<button class="btn btn-danger btn-sm" onclick="return confirm('�Eliminar este bien?')"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</button>
+			<button class="btn btn-danger btn-sm" onclick="return confirm('¿Eliminar este bien?')"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</button>
                         </form>
                     </td>
                 </tr>

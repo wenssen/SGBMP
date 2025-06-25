@@ -15,5 +15,16 @@ class Bien extends Model
         'cantidad',
         'fecha_adquisicion',
         'descripcion',
+        'requiere_mantenimiento', 
     ];
+
+    protected $casts = [
+        'requiere_mantenimiento' => 'boolean', 
+    ];
+
+    public function mantenimientos()
+    {
+        return $this->hasMany(Mantenimiento::class);
+    }
 }
+

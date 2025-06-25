@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('content')
 <div class="container mt-5">
@@ -27,8 +27,19 @@
             </select>
         </div>
 
+        <div class="mb-3">
+            <label for="responsable" class="form-label">Responsable</label>
+            <input type="text" name="responsable" class="form-control" value="{{ $mantenimiento->responsable }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="observaciones" class="form-label">Observaciones</label>
+            <textarea name="observaciones" class="form-control" rows="3">{{ $mantenimiento->observaciones }}</textarea>
+        </div>
+
         <button type="submit" class="btn btn-primary">Actualizar</button>
         <a href="{{ route('mantenimientos.index') }}" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
 @endsection
+

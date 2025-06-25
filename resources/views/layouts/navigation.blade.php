@@ -1,10 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="{{ route('dashboard') }}">
+        <span class="navbar-brand d-flex align-items-center" style="cursor: default;">
             <img src="{{ asset('images/logo_sgbmp.png') }}" alt="Logo" style="height: 40px;" class="me-2">
-            <strong>SGBMP</strong>
-        </a>
-
+        </span>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>

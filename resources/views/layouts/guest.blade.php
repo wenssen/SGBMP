@@ -25,7 +25,6 @@
                     <a href="/">
                         <img src="{{ asset('images/logo_sgbmp.png') }}" alt="Logo SGBMP" class="img-fluid" style="max-width: 120px;">
                     </a>
-                    <h2 class="mt-3 text-primary">SGBMP</h2>
                 </div>
             </div>
 

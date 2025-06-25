@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.layout')
 
 @section('content')
     <h2 class="mb-4">Editar Bien</h2>
@@ -8,7 +8,7 @@
         @method('PUT')
 
         <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
+            <label for="nombre" class="form-label">Nombre del bien</label>
             <input type="text" name="nombre" class="form-control" value="{{ $bien->nombre }}" required>
         </div>
 
@@ -37,7 +37,20 @@
             <textarea name="descripcion" class="form-control" rows="3">{{ $bien->descripcion }}</textarea>
         </div>
 
+        <div class="mb-3">
+            <label class="form-label">¿Requiere mantenimiento?</label><br>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="requiere_mantenimiento" id="mantenimiento_si" value="1" {{ $bien->requiere_mantenimiento ? 'checked' : '' }}>
+                <label class="form-check-label" for="mantenimiento_si">Sí</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="requiere_mantenimiento" id="mantenimiento_no" value="0" {{ !$bien->requiere_mantenimiento ? 'checked' : '' }}>
+                <label class="form-check-label" for="mantenimiento_no">No</label>
+            </div>
+        </div>
+
         <button type="submit" class="btn btn-primary">Actualizar</button>
         <a href="{{ route('bienes.index') }}" class="btn btn-secondary">Cancelar</a>
     </form>
 @endsection
+

@@ -1,16 +1,16 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('content')
     <div class="text-center">
-        <h1 class="display-4 mb-4">Portal de Gesti髇 de Bienes</h1>
-        <p class="lead">Sistema de Gesti髇 de Bienes y Mantenimiento Preventivo.</p>
+        <h1 class="display-4 mb-4">Portal de Gesti贸n de Bienes</h1>
+        <p class="lead">Sistema de Gesti贸n de Bienes y Mantenimiento Preventivo.</p>
 
         <div class="row justify-content-center mt-5">
             <div class="col-md-4">
                 <div class="card shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title">Gesti髇 de Bienes</h5>
-                        <p class="card-text">Registra, edita y visualiza los bienes de tu organizaci髇.</p>
+                        <h5 class="card-title">Gesti贸n de Bienes</h5>
+                        <p class="card-text">Registra, edita y visualiza los bienes de tu organizaci贸n.</p>
                         <a href="{{ route('bienes.index') }}" class="btn btn-primary w-100">Ver Bienes</a>
                     </div>
                 </div>
@@ -28,3 +28,4 @@
         </div>
     </div>
 @endsection
+

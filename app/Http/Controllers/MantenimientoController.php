@@ -1,8 +1,5 @@
 <?php
-<<<<<<< HEAD
-=======
 
->>>>>>> 2108499 (Actualizar mantenimientos y notificaciones)
 namespace App\Http\Controllers;
 
 use App\Models\Mantenimiento;
@@ -11,19 +8,30 @@ use Illuminate\Http\Request;
 
 class MantenimientoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $mantenimientos = Mantenimiento::with('bien')->get();
+        $query = Mantenimiento::with('bien');
+
+        if ($request->filled('estado')) {
+            $query->where('estado', $request->estado);
+        }
+
+        if ($request->filled('responsable')) {
+            $query->where('responsable', 'LIKE', '%' . $request->responsable . '%');
+        }
+
+        if ($request->filled('fecha')) {
+            $query->whereDate('fecha_programada', $request->fecha);
+        }
+
+        $mantenimientos = $query->get();
+
         return view('mantenimientos.index', compact('mantenimientos'));
     }
 
     public function create()
     {
-<<<<<<< HEAD
-        $bienes = Bien::where('requiere_mantenimiento', true)->get();
-=======
-        $bienes = Bien::all();
->>>>>>> 2108499 (Actualizar mantenimientos y notificaciones)
+        $bienes = Bien::where('requiere_mantenimiento', true)->get(); // Filtrar solo los bienes que requieren mantenimiento
         return view('mantenimientos.create', compact('bienes'));
     }
 
@@ -31,48 +39,31 @@ class MantenimientoController extends Controller
     {
         $request->validate([
             'bien_id' => 'required|exists:bienes,id',
-<<<<<<< HEAD
-            'tipo' => 'required|string|max:100',
-            'fecha_programada' => 'required|date',
-            'estado' => 'required|string',
-            'responsable' => 'nullable|string|max:255',
-            'observaciones' => 'nullable|string',
-=======
             'tipo' => 'required|string|max:255',
             'fecha_programada' => 'required|date',
->>>>>>> 2108499 (Actualizar mantenimientos y notificaciones)
+            'estado' => 'required|in:pendiente,realizado,cancelado',
+            'responsable' => 'nullable|string|max:255',
+            'observaciones' => 'nullable|string',
         ]);
 
-        Mantenimiento::create($request->all());
+        $mantenimiento = Mantenimiento::create($request->all());
 
-<<<<<<< HEAD
-        return redirect()->route('mantenimientos.index')->with('success', 'Mantenimiento registrado.');
-=======
         return redirect()->route('mantenimientos.index')->with('success', 'Mantenimiento creado correctamente.');
     }
 
     public function show(Mantenimiento $mantenimiento)
     {
         return view('mantenimientos.show', compact('mantenimiento'));
->>>>>>> 2108499 (Actualizar mantenimientos y notificaciones)
     }
 
     public function edit(Mantenimiento $mantenimiento)
     {
-<<<<<<< HEAD
-        $bienes = Bien::where('requiere_mantenimiento', true)->get();
+        $bienes = Bien::where('requiere_mantenimiento', true)->get(); // Filtrar solo los bienes que requieren mantenimiento
         return view('mantenimientos.edit', compact('mantenimiento', 'bienes'));
-=======
-        return view('mantenimientos.edit', compact('mantenimiento'));
->>>>>>> 2108499 (Actualizar mantenimientos y notificaciones)
     }
 
     public function update(Request $request, Mantenimiento $mantenimiento)
     {
-<<<<<<< HEAD
-        $mantenimiento->update($request->all());
-        return redirect()->route('mantenimientos.index')->with('success', 'Mantenimiento actualizado.');
-=======
         $request->validate([
             'tipo' => 'required|string|max:255',
             'fecha_programada' => 'required|date',
@@ -82,19 +73,12 @@ class MantenimientoController extends Controller
         $mantenimiento->update($request->all());
 
         return redirect()->route('mantenimientos.index')->with('success', 'Mantenimiento actualizado correctamente.');
->>>>>>> 2108499 (Actualizar mantenimientos y notificaciones)
     }
 
     public function destroy(Mantenimiento $mantenimiento)
     {
         $mantenimiento->delete();
-<<<<<<< HEAD
-        return redirect()->route('mantenimientos.index')->with('success', 'Mantenimiento eliminado.');
-    }
-}
-=======
-
         return redirect()->route('mantenimientos.index')->with('success', 'Mantenimiento eliminado correctamente.');
     }
 }
->>>>>>> 2108499 (Actualizar mantenimientos y notificaciones)
+

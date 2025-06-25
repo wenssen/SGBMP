@@ -1,7 +1,18 @@
-@extends('layout')
+@extends('layouts.layout')
 
 @section('content')
     <h2 class="mb-4">Registrar nuevo Bien</h2>
+
+    {{-- Mostrar errores si los hay --}}
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     <form action="{{ route('bienes.store') }}" method="POST">
         @csrf
@@ -63,13 +74,23 @@
             <textarea name="descripcion" class="form-control" rows="3"></textarea>
         </div>
 
+        {{-- REQUIERE MANTENIMIENTO --}}
+        <div class="mb-3">
+            <label class="form-label">¿Requiere mantenimiento?</label><br>
+            <div class="form-check form-check-inline">
+                <input type="radio" class="form-check-input" name="requiere_mantenimiento" id="requiere_si" value="1">
+                <label class="form-check-label" for="requiere_si">Sí</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="radio" class="form-check-input" name="requiere_mantenimiento" id="requiere_no" value="0" checked>
+                <label class="form-check-label" for="requiere_no">No</label>
+            </div>
+        </div>
+
+        {{-- BOTONES --}}
         <button type="submit" class="btn btn-primary">Guardar</button>
         <a href="{{ route('bienes.index') }}" class="btn btn-secondary">Cancelar</a>
     </form>
-    
-    <label>¿Requiere mantenimiento?</label><br>
-    <input type="radio" name="requiere_mantenimiento" value="1"> Sí<br>
-    <input type="radio" name="requiere_mantenimiento" value="0" checked> No<br>
 
     {{-- SCRIPT PARA MOSTRAR INPUTS --}}
     <script>
@@ -85,3 +106,4 @@
         }
     </script>
 @endsection
+
