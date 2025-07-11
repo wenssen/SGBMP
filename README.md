@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="https://github.com/wenssen/SGBMP/blob/main/uaysen_patagonia_color_sin_fondo.png" width="250" alt="Universidad de Aysen">
+  <img src="https://github.com/wenssen/SGBMP/uaysen_patagonia_color_sin_fondo.png" width="250" alt="Universidad de Aysen">
 </p>
 
 # SGBMP - Sistema de Gestión de Bienes y Mantenimiento Preventivo
