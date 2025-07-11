@@ -1,3 +1,4 @@
+
 <p align="center">
   <img src="https://github.com/wenssen/SGBMP/blob/main/wenssen_logo.png" width="250" alt="Logo Wenssen">
 </p>
@@ -30,10 +31,10 @@ El **SGBMP** es una plataforma web desarrollada para facilitar la administració
 
 ## 🧰 Tecnologías Utilizadas
 
-- **Backend**: Laravel (PHP)
-- **Frontend**: Blade + Laravel Mix
+- **Backend**: Laravel 10.x (PHP 8.4.1)
+- **Frontend**: Blade + TailwindCSS + Vite
 - **Base de Datos**: MySQL
-- **Estilo y UI**: Bootstrap, FontAwesome, JavaScript
+- **Estilo y UI**: TailwindCSS, JavaScript
 
 ---
 
@@ -43,49 +44,64 @@ El **SGBMP** es una plataforma web desarrollada para facilitar la administració
    ```bash
    git clone https://github.com/wenssen/SGBMP.git
    cd SGBMP
-   
+   ```
+
 2. Instala las dependencias:
    ```bash
    composer install
-   npm install && npm run dev
+   npm install && npm run build
+   ```
 
 3. Configura el entorno:
    ```bash
    cp .env.example .env
    php artisan key:generate
+   ```
 
-4. Ajusta .env con tus credenciales de base de datos y ejecuta:
+4. Ajusta `.env` con tus credenciales y ejecuta:
    ```bash
-   php artisan migrate
+   php artisan migrate --seed
    php artisan serve
+   ```
 
-📦 Funcionalidades Futuras (propuestas)
+---
 
-    Mejoras en visualizaciones: iconos, tarjetas e indicadores gráficos.
+## 📦 Funcionalidades Futuras (propuestas)
 
-    Flujo visual interactivo para nuevos usuarios.
+- Mejoras en visualizaciones: iconos, tarjetas e indicadores gráficos.
+- Flujo visual interactivo para nuevos usuarios.
+- Registro de auditoría detallado para cambios en bienes y mantenimientos.
+- Permitir asignar varios responsables por mantenimiento.
+- Dashboard de métricas y alertas críticas.
 
-    Registro de auditoría detallado para cambios en bienes y mantenimientos.
+---
 
-    Permitir asignar varios responsables por mantenimiento.
+## 🧪 Testing
 
-    Dashboard de métricas y alertas críticas.
+Ejecuta tests con PHPUnit:
+```bash
+php artisan test
+```
 
-🤝 Contribuciones
+---
+
+## 🤝 Contribuciones
 
 ¡Las contribuciones son bienvenidas!
 
-    Haz un fork del repositorio.
+1. Haz un fork del repositorio.
+2. Crea una rama con tu funcionalidad o fix.
+3. Realiza un pull request explicando tus cambios.
 
-    Crea una rama con tu funcionalidad o fix.
+---
 
-    Realiza un pull request explicando tus cambios.
-
-📄 Licencia
+## 📄 Licencia
 
 Este proyecto está licenciado bajo la Licencia MIT.
 
-📬 Contacto
+---
 
-Desarrollado por Edgar Santana
+## 📬 Contacto
+
+Desarrollado por Edgar Santana  
 📧 Correo: edgar.santana@alumnos.uaysen.cl
