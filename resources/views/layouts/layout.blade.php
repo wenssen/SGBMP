@@ -45,7 +45,10 @@
                     </ul>
                 </li>
 
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-cog"></i> Configuración</a></li>
+                {{-- 🔧 Botón de Configuración oculto --}}
+                <li class="nav-item d-none">
+                    <a href="#" class="nav-link"><i class="fa fa-cog"></i> Configuración</a>
+                </li>
 
                 @auth
                 <li class="nav-item dropdown">
@@ -111,9 +114,7 @@
     const toastKey = 'alertasCerradas';
     const alertasActuales = @json($alertas_mantenimiento->pluck('id'));
     const alertasCerradas = JSON.parse(localStorage.getItem(toastKey) || '[]');
-
     const hayAlertaNueva = alertasActuales.some(id => !alertasCerradas.includes(id));
-
     let originalTitle = document.title;
     let blinkInterval = null;
 

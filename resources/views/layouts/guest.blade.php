@@ -23,7 +23,7 @@
             <div>
                 <div class="text-center mt-4 mb-2">
                     <a href="/">
-                        <img src="{{ asset('images/logo_sgbmp.png') }}" alt="Logo SGBMP" class="img-fluid" style="max-width: 120px;">
+                        <img src="{{ asset('images/logo_sgbmp.png') }}" alt="Logo SGBMP" class="img-fluid" style="max-width: 300px;">
                     </a>
                 </div>
             </div>

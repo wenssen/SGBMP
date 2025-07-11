@@ -8,18 +8,22 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 class Kernel extends ConsoleKernel
 {
     /**
-     * Define los comandos disponibles para la aplicación.
+     * Define los comandos disponibles para la aplicaciÃ³n.
      */
     protected $commands = [
-        Commands\RevisarMantenimientos::class, // <- añade tus comandos aquí
+        \App\Console\Commands\RevisarMantenimientos::class,
+        \App\Console\Commands\NotificarMantenimientosProximos::class,
     ];
 
     /**
-     * Define la programación de comandos de Artisan.
+     * Define la programaciÃ³n de comandos de Artisan.
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('mantenimientos:revisar')->dailyAt('08:00'); // o cuando prefieras
+        // Ejecuta el comando todos los dÃ­as a las 08:00 hora Chile
+        $schedule->command('mantenimientos:revisar')
+            ->dailyAt('08:00')
+            ->timezone('America/Santiago');
     }
 
     /**
@@ -32,3 +36,4 @@ class Kernel extends ConsoleKernel
         require base_path('routes/console.php');
     }
 }
+

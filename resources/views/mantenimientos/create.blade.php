@@ -38,7 +38,12 @@
 
         <div class="mb-3">
             <label for="responsable" class="form-label">Responsable</label>
-            <input type="text" name="responsable" id="responsable" class="form-control" placeholder="Opcional">
+            <select name="responsable" id="responsable" class="form-select">
+                <option value="">-- Selecciona un subrogado --</option>
+                @foreach ($usuarios as $usuario)
+                    <option value="{{ $usuario->name }}">{{ $usuario->name }}</option>
+                @endforeach
+            </select>
         </div>
 
         <div class="mb-3">

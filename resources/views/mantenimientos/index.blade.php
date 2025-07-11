@@ -4,7 +4,11 @@
 <div class="container mt-5">
     <h1 class="mb-4">Listado de Mantenimientos</h1>
 
-    <a href="{{ route('mantenimientos.create') }}" class="btn btn-primary mb-3">Nuevo Mantenimiento</a>
+    @isset(Auth::user()->rol)
+        @if(esAdmin())
+            <a href="{{ route('mantenimientos.create') }}" class="btn btn-primary mb-3">Nuevo Mantenimiento</a>
+        @endif
+    @endisset
 
     {{-- Filtros --}}
     <form method="GET" class="row g-3 mb-4">
@@ -25,8 +29,11 @@
         </div>
 
         <div class="col-md-3">
-            <label for="fecha" class="form-label">Fecha programada</label>
-            <input type="date" name="fecha" id="fecha" class="form-control" value="{{ request('fecha') }}">
+            <label class="form-label">Fecha programada</label>
+            <div class="d-flex gap-2">
+                <input type="date" name="fecha_desde" class="form-control" value="{{ request('fecha_desde') }}">
+                <input type="date" name="fecha_hasta" class="form-control" value="{{ request('fecha_hasta') }}">
+            </div>
         </div>
 
         <div class="col-md-3 d-flex align-items-end">
@@ -39,14 +46,25 @@
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <table class="table table-bordered">
+    {{-- Helper para ordenamiento --}}
+    @php
+        function sortLink($column, $label, $sort, $direction) {
+            $dir = ($sort === $column && $direction === 'asc') ? 'desc' : 'asc';
+            $icon = ($sort === $column) ? ($direction === 'asc' ? '↑' : '↓') : '';
+            $query = array_merge(request()->except('page'), ['sort' => $column, 'direction' => $dir]);
+            $url = route('mantenimientos.index', $query);
+            return "<a href=\"$url\" class=\"text-white text-decoration-none\">$label $icon</a>";
+        }
+    @endphp
+
+    <table class="table table-bordered table-dark">
         <thead>
             <tr>
-                <th>Bien</th>
-                <th>Tipo</th>
-                <th>Fecha Programada</th>
-                <th>Responsable</th>
-                <th>Estado</th>
+                <th>{!! sortLink('bien_nombre', 'Bien', $sort, $direction) !!}</th>
+                <th>{!! sortLink('tipo', 'Tipo', $sort, $direction) !!}</th>
+                <th>{!! sortLink('fecha_programada', 'Fecha Programada', $sort, $direction) !!}</th>
+                <th>{!! sortLink('responsable', 'Responsable', $sort, $direction) !!}</th>
+                <th>{!! sortLink('estado', 'Estado', $sort, $direction) !!}</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -61,9 +79,10 @@
                     <td>{{ $mantenimiento->bien->nombre ?? 'N/A' }}</td>
                     <td>{{ $mantenimiento->tipo }}</td>
                     <td>
-                        {{ $mantenimiento->fecha_programada }}
-                        <br>
-                        @if ($fecha->equalTo($hoy))
+                        {{ $mantenimiento->fecha_programada }}<br>
+                        @if (in_array($mantenimiento->estado, ['realizado', 'cancelado']))
+                            <span class="badge bg-secondary text-light">{{ ucfirst($mantenimiento->estado) }}</span>
+                        @elseif ($fecha->equalTo($hoy))
                             <span class="badge bg-warning text-dark">Hoy</span>
                         @elseif ($diasRestantes > 0)
                             <span class="badge bg-success">En {{ $diasRestantes }} días</span>
@@ -75,17 +94,21 @@
                     <td>{{ ucfirst($mantenimiento->estado) }}</td>
                     <td>
                         <a href="{{ route('mantenimientos.show', $mantenimiento) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Ver</a>
-                        <a href="{{ route('mantenimientos.edit', $mantenimiento) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i> Editar</a>
-                        <form action="{{ route('mantenimientos.destroy', $mantenimiento) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Eliminar?')"><i class="fa fa-trash-o"></i> Eliminar</button>
-                        </form>
+                        @if(esAdmin())
+                            <a href="{{ route('mantenimientos.edit', $mantenimiento) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i> Editar</a>
+                            <form action="{{ route('mantenimientos.destroy', $mantenimiento) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Eliminar?')"><i class="fa fa-trash-o"></i> Eliminar</button>
+                            </form>
+                        @endif
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+
+    {{ $mantenimientos->links() }}
 </div>
 @endsection
 

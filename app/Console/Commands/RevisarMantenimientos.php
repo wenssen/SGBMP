@@ -4,28 +4,41 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\Mantenimiento;
-use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Log; // 👈 AÑADIDO
 
 class RevisarMantenimientos extends Command
 {
-    protected $signature = 'mantenimientos:revisar';  // <- Este nombre es clave
-    protected $description = 'Verifica mantenimientos pr�ximos y vencidos';
+    protected $signature = 'mantenimientos:revisar';
+
+    protected $description = 'Revisa si hay mantenimientos próximos y ejecuta la notificación si los hay.';
 
     public function handle()
     {
-        $hoy = now();
+        // 👇 Log de ejecución automática
+        Log::info('⏰ Comando mantenimientos:revisar ejecutado automáticamente a ' . now());
 
-        $proximos = Mantenimiento::whereDate('fecha_programada', $hoy->copy()->addDays(3))->get();
-        $vencidos = Mantenimiento::whereDate('fecha_programada', '<', $hoy)->where('estado', 'pendiente')->get();
+        $hoy = Carbon::now();
+        $en3dias = $hoy->copy()->addDays(3);
 
-        foreach ($proximos as $m) {
-            Log::info("Mantenimiento pr�ximo para el bien {$m->bien->id}: {$m->fecha_programada}");
+        $hayPendientes = Mantenimiento::where('estado', 'pendiente')
+            ->whereBetween('fecha_programada', [$hoy, $en3dias])
+            ->exists();
+
+        if ($hayPendientes) {
+            $this->info('Se encontraron mantenimientos próximos. Ejecutando notificación...');
+            Log::info('🔔 Se encontraron mantenimientos próximos, ejecutando notificar:mantenimientos-proximos');
+
+            Artisan::call('notificar:mantenimientos-proximos');
+            $this->info(Artisan::output());
+
+            // También puedes loggear la salida si quieres
+            Log::info('📝 Salida de notificar:mantenimientos-proximos: ' . Artisan::output());
+        } else {
+            $this->info('No hay mantenimientos pendientes próximos.');
+            Log::info('✅ No se encontraron mantenimientos próximos para notificar.');
         }
-
-        foreach ($vencidos as $m) {
-            Log::warning("Mantenimiento vencido para el bien {$m->bien->id}");
-        }
-
-        $this->info('Revisi�n de mantenimientos completada.');
     }
 }
+
