@@ -76,15 +76,6 @@ El **SGBMP** es una plataforma web desarrollada para facilitar la administració
 
 ---
 
-## 🧪 Testing
-
-Ejecuta tests con PHPUnit:
-```bash
-php artisan test
-```
-
----
-
 ## 🤝 Contribuciones
 
 ¡Las contribuciones son bienvenidas!
