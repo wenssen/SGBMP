@@ -88,7 +88,7 @@ El **SGBMP** es una plataforma web desarrollada para facilitar la administració
 
 ## 📄 Licencia
 
-Este proyecto está licenciado bajo la Licencia MIT.
+Este proyecto está licenciado bajo la [Licencia MIT](https://github.com/wenssen/SGBMP/blob/7154b62438e207aed7a14336f4d1447834db0a61/LICENSE).
 
 ---
 
